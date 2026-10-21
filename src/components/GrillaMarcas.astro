@@ -1,0 +1,32 @@
+---
+const marcas = [
+  { slug: 'quala', nombre: 'Quala' },
+  { slug: 'nestle', nombre: 'Nestlé' },
+  { slug: 'colgate', nombre: 'Colgate' },
+  { slug: 'nutresa', nombre: 'Nutresa' },
+  { slug: 'incauca', nombre: 'Incauca' },
+  { slug: 'elite', nombre: 'Elite' },
+  { slug: 'durena', nombre: 'Dureña' },
+  { slug: 'cocereales', nombre: 'Cocereales' },
+  { slug: 'sudespensa', nombre: 'SuDespensa' },
+  { slug: 'levapan', nombre: 'Levapan' },
+  { slug: 'organizacion-cardenas', nombre: 'Organización Cardenas' },
+  { slug: 'tradeworks', nombre: 'Trade Works' },
+  { slug: 'comercial-nutresa', nombre: 'Comercial Nutresa' },
+  { slug: 'la-lechera', nombre: 'La Lechera' },
+  { slug: 'dona-gallina', nombre: 'Doña Gallina' },
+  { slug: 'suavitel', nombre: 'Suavitel' },
+  { slug: 'ducales', nombre: 'Ducales' },
+  { slug: 'frutino', nombre: 'Frutino' },
+  { slug: 'nutribela', nombre: 'NutriBela' },
+  { slug: 'ariel', nombre: 'Ariel' },
+];
+---
+
+<div class="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-5">
+  {marcas.map((m) => (
+    <div class="flex h-20 items-center justify-center rounded-2xl border border-verde/10 bg-white p-3">
+      <img src={`/img/marcas/${m.slug}.webp`} alt={m.nombre} loading="lazy" class="max-h-14 w-auto object-contain" />
+    </div>
+  ))}
+</div>

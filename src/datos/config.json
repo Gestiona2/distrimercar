@@ -1,0 +1,19 @@
+{
+  "nombre": "Distrimercar O.R",
+  "descripcion_corta": "Distribuidora de abarrotes, aseo y productos de consumo. Pide por WhatsApp y recoge en el local o recibe en tu negocio.",
+  "whatsapp": "573045288312",
+  "telefono_visible": "304 528 8312",
+  "direccion": "Bodega 7, Local 23-24A",
+  "ciudad": null,
+  "horario": null,
+  "email": null,
+  "redes": [],
+  "envio": {
+    "disponible": true,
+    "costo": null,
+    "gratis_desde": null,
+    "nota": "Consulta cobertura y costo de domicilio por WhatsApp."
+  },
+  "moneda": "COP",
+  "demo": true
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "slug": "desayunos",
+    "titulo": "Desayunos y café",
+    "descripcion": "Café, maltas y leche en polvo para arrancar el día.",
+    "icono": "coffee",
+    "orden": 1
+  },
+  {
+    "slug": "abarrotes",
+    "titulo": "Abarrotes",
+    "descripcion": "Azúcar, arroz, pastas, panelas y condimentos de despensa.",
+    "icono": "package",
+    "orden": 2
+  },
+  {
+    "slug": "galletas",
+    "titulo": "Galletas y snacks",
+    "descripcion": "Galletas saladas y dulces para el hogar y el negocio.",
+    "icono": "cookie",
+    "orden": 3
+  },
+  {
+    "slug": "limpieza",
+    "titulo": "Limpieza del hogar",
+    "descripcion": "Detergentes, desinfectantes y jabones para el aseo.",
+    "icono": "spray",
+    "orden": 4
+  },
+  {
+    "slug": "cuidado-personal",
+    "titulo": "Cuidado personal",
+    "descripcion": "Higiene bucal, jabones y papel higiénico.",
+    "icono": "heart",
+    "orden": 5
+  }
+]

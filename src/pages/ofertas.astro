@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GrillaProductos from '../components/GrillaProductos.astro';
+import EncabezadoSeccion from '../components/EncabezadoSeccion.astro';
+import InyectarCatalogo from '../components/InyectarCatalogo.astro';
+import productos from '../datos/productos.json';
+
+const ofertas = productos.filter((p) => p.precio_antes && p.precio_antes > p.precio && p.stock);
+---
+
+<Layout titulo="Ofertas" descripcion="Ofertas de la semana en Distrimercar. Precios de demostración.">
+  <EncabezadoSeccion titulo="Ofertas de la semana" bajada="Descuentos de demostración. Los precios reales se cargan con el catálogo definitivo." />
+  <section class="contenedor py-10">
+    {ofertas.length > 0 ? (
+      <GrillaProductos productos={ofertas} columnas={4} />
+    ) : (
+      <p class="py-16 text-center text-tinta-suave">Por el momento no hay ofertas publicadas.</p>
+    )}
+  </section>
+  <InyectarCatalogo slot="scripts" productos={productos} />
+</Layout>

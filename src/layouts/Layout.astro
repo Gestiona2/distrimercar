@@ -1,0 +1,152 @@
+---
+import '../styles/global.css';
+import config from '../datos/config.json';
+
+interface Props {
+  titulo?: string;
+  descripcion?: string;
+}
+
+const { titulo, descripcion } = Astro.props;
+const tituloCompleto = titulo ? `${titulo} | ${config.nombre}` : `${config.nombre} — Abarrotes, aseo y consumo masivo`;
+const desc = descripcion || config.descripcion_corta;
+const ruta = Astro.url.pathname;
+const enCatalogo = ruta.startsWith('/catalogo') || ruta.startsWith('/categoria') || ruta.startsWith('/producto') || ruta.startsWith('/ofertas');
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{tituloCompleto}</title>
+    <meta name="description" content={desc} />
+    <link rel="icon" type="image/webp" href="/img/sitio/logo.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet" />
+    <slot name="head" />
+  </head>
+  <body class="marca-agua-demo min-h-screen flex flex-col">
+    <a href="#contenido" class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-lg focus:bg-verde focus:px-4 focus:py-2 focus:text-white">Saltar al contenido</a>
+
+    <div class="bg-verde-oscuro text-white text-xs sm:text-sm">
+      <div class="contenedor flex items-center justify-between gap-3 py-1.5">
+        <p class="font-semibold">Pedido por WhatsApp al <a class="underline font-extrabold" href={`https://wa.me/${config.whatsapp}`} target="_blank" rel="noopener">{config.telefono_visible}</a></p>
+        <p class="hidden sm:block opacity-90">{config.direccion}{config.ciudad ? ` — ${config.ciudad}` : ''}</p>
+      </div>
+    </div>
+
+    <header class="sticky top-0 z-40 border-b border-verde/10 bg-crema/95 backdrop-blur">
+      <div class="contenedor flex items-center gap-3 py-3">
+        <a href="/" class="shrink-0" aria-label={config.nombre}>
+          <img src="/img/sitio/logo.webp" alt={config.nombre} width="150" height="80" class="h-12 w-auto sm:h-14" />
+        </a>
+
+        <nav class="ml-2 hidden items-center gap-1 md:flex" aria-label="Principal">
+          <a href="/catalogo" class:list={["rounded-xl px-3 py-2 text-sm font-bold hover:bg-verde-claro", enCatalogo && "text-verde"]}>Catálogo</a>
+          <a href="/ofertas" class:list={["rounded-xl px-3 py-2 text-sm font-bold hover:bg-verde-claro", ruta.startsWith('/ofertas') && "text-verde"]}>Ofertas</a>
+        </nav>
+
+        <div class="relative ml-auto w-full max-w-xs" id="buscador">
+          <input
+            id="buscador-input"
+            type="search"
+            placeholder="Buscar productos…"
+            autocomplete="off"
+            class="w-full rounded-2xl border border-verde/20 bg-white px-4 py-2.5 pr-10 text-sm font-semibold placeholder:text-tinta-suave/70 focus:border-verde focus:outline-none focus:ring-2 focus:ring-verde/20"
+            aria-label="Buscar productos"
+          />
+          <svg class="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-verde" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <div id="buscador-resultados" class="absolute left-0 right-0 top-full z-50 mt-2 hidden max-h-96 overflow-auto rounded-2xl border border-verde/15 bg-white shadow-xl shadow-verde/10"></div>
+        </div>
+
+        <button data-abrir-carrito class="relative shrink-0 rounded-2xl bg-verde px-3.5 py-2.5 text-white shadow-sm transition hover:bg-verde-oscuro" aria-label="Abrir carrito">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+          <span id="carrito-badge" class="absolute -right-1.5 -top-1.5 hidden min-w-[1.25rem] rounded-full bg-naranja px-1 text-center text-[0.7rem] font-black leading-5 text-white">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="contenido" class="flex-1">
+      <slot />
+    </main>
+
+    <footer class="mt-16 bg-verde-oscuro text-white">
+      <div class="contenedor grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <img src="/img/sitio/logo.webp" alt={config.nombre} class="h-16 w-auto rounded-xl bg-white p-2" />
+          <p class="mt-4 text-sm leading-relaxed text-white/80">{config.descripcion_corta}</p>
+        </div>
+        <div>
+          <h3 class="text-sm font-black uppercase tracking-wider text-amarillo">Catálogo</h3>
+          <ul class="mt-3 space-y-2 text-sm text-white/85">
+            <li><a class="hover:text-amarillo" href="/catalogo">Todos los productos</a></li>
+            <li><a class="hover:text-amarillo" href="/ofertas">Ofertas</a></li>
+            <li><a class="hover:text-amarillo" href="/catalogo#marcas">Marcas</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-sm font-black uppercase tracking-wider text-amarillo">Contacto</h3>
+          <ul class="mt-3 space-y-2 text-sm text-white/85">
+            <li>{config.direccion}</li>
+            {config.ciudad && <li>{config.ciudad}</li>}
+            <li><a class="font-bold text-amarillo hover:underline" href={`https://wa.me/${config.whatsapp}`} target="_blank" rel="noopener">WhatsApp {config.telefono_visible}</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-sm font-black uppercase tracking-wider text-amarillo">Foto del local</h3>
+          <img src="/img/sitio/foto-local.webp" alt={`Local de ${config.nombre}`} loading="lazy" class="mt-3 rounded-2xl" />
+        </div>
+      </div>
+      <div class="border-t border-white/15">
+        <div class="contenedor flex flex-col items-center justify-between gap-2 py-4 text-xs text-white/70 sm:flex-row">
+          <p>© {new Date().getFullYear()} {config.nombre}. Sitio demo — precios y descripciones de ejemplo.</p>
+          <p>Distribuidora de abarrotes y aseo</p>
+        </div>
+      </div>
+    </footer>
+
+    <div id="carrito" class="pointer-events-none fixed inset-0 z-50 opacity-0 transition" aria-hidden="true">
+      <div id="carrito-overlay" class="absolute inset-0 bg-tinta/50"></div>
+      <aside class="absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-crema shadow-2xl">
+        <div class="flex items-center justify-between border-b border-verde/10 px-5 py-4">
+          <h2 class="text-lg font-black">Tu pedido</h2>
+          <button id="carrito-cerrar" class="rounded-xl p-2 hover:bg-verde-claro" aria-label="Cerrar carrito">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 6 12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
+        <div class="flex-1 overflow-y-auto px-5">
+          <p id="carrito-vacio" class="py-10 text-center text-sm text-tinta-suave">Tu carrito está vacío.<br />Agrega productos del catálogo.</p>
+          <ul id="carrito-lista"></ul>
+        </div>
+        <div id="carrito-pie" class="hidden border-t border-verde/10 bg-white px-5 py-4">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-bold text-tinta-suave">Total productos</span>
+            <span id="carrito-total" class="text-xl font-black text-verde"></span>
+          </div>
+          <form id="carrito-entrega" class="mt-3 space-y-2">
+            <input id="entrega-nombre" type="text" placeholder="Tu nombre (opcional)" class="w-full rounded-xl border border-verde/20 bg-crema px-3 py-2 text-sm" />
+            <input id="entrega-direccion" type="text" placeholder="Dirección de entrega (opcional)" class="w-full rounded-xl border border-verde/20 bg-crema px-3 py-2 text-sm" />
+            <input id="entrega-nota" type="text" placeholder="Nota para el pedido (opcional)" class="w-full rounded-xl border border-verde/20 bg-crema px-3 py-2 text-sm" />
+          </form>
+          <button id="carrito-enviar" class="mt-3 w-full rounded-2xl bg-naranja py-3.5 text-sm font-black uppercase tracking-wide text-white shadow-md transition hover:bg-naranja-oscuro">
+            Enviar pedido por WhatsApp
+          </button>
+          <p class="mt-2 text-center text-[0.7rem] text-tinta-suave">Demo: los precios son de ejemplo.</p>
+        </div>
+      </aside>
+    </div>
+
+    <script is:inline define:vars={{ configData: config }}>
+      window.__DM_CONFIG__ = configData;
+    </script>
+    <script is:inline>
+      // catálogo se inyecta desde cada página cuando hace falta
+    </script>
+    <script>
+      import '../scripts/tienda.js';
+    </script>
+    <slot name="scripts" />
+  </body>
+</html>

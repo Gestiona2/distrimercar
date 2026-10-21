@@ -1,0 +1,21 @@
+---
+import sinonimos from '../datos/sinonimos.json';
+
+interface Props {
+  productos: any[];
+}
+
+const { productos } = Astro.props;
+const ligero = productos.map((p) => ({
+  slug: p.slug,
+  titulo: p.titulo,
+  precio: p.precio,
+  imagen: p.imagenes[0],
+  marca: p.marca,
+  categoria: p.categoria,
+  subcategoria: p.subcategoria,
+  descripcion: p.descripcion,
+}));
+---
+
+<script is:inline set:html={`window.__DM_PRODUCTOS__ = ${JSON.stringify(ligero)};window.__DM_SINONIMOS__ = ${JSON.stringify(sinonimos)};`} />

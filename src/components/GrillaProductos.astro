@@ -1,0 +1,19 @@
+---
+import TarjetaProducto from './TarjetaProducto.astro';
+
+interface Props {
+  productos: any[];
+  columnas?: 3 | 4 | 5;
+}
+
+const { productos, columnas = 4 } = Astro.props;
+const cols = {
+  3: 'sm:grid-cols-2 lg:grid-cols-3',
+  4: 'sm:grid-cols-2 lg:grid-cols-4',
+  5: 'sm:grid-cols-3 lg:grid-cols-5',
+}[columnas];
+---
+
+<div class:list={["grid grid-cols-2 gap-4 sm:gap-5", cols]}>
+  {productos.map((p) => <TarjetaProducto producto={p} />)}
+</div>

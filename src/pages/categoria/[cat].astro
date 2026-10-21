@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import GrillaProductos from '../../components/GrillaProductos.astro';
+import RailCategorias from '../../components/RailCategorias.astro';
+import EncabezadoSeccion from '../../components/EncabezadoSeccion.astro';
+import InyectarCatalogo from '../../components/InyectarCatalogo.astro';
+import productos from '../../datos/productos.json';
+import categorias from '../../datos/categorias.json';
+
+export function getStaticPaths() {
+  return categorias.map((c) => ({ params: { cat: c.slug }, props: { categoria: c } }));
+}
+
+const { categoria } = Astro.props;
+const items = productos.filter((p) => p.categoria === categoria.slug && p.stock);
+---
+
+<Layout titulo={categoria.titulo} descripcion={categoria.descripcion}>
+  <EncabezadoSeccion titulo={categoria.titulo} bajada={categoria.descripcion} activa={categoria.slug} />
+  <RailCategorias activa={categoria.slug} />
+  <section class="contenedor py-10">
+    {items.length > 0 ? (
+      <GrillaProductos productos={items} columnas={4} />
+    ) : (
+      <p class="py-16 text-center text-tinta-suave">Esta categoría no tiene productos todavía.</p>
+    )}
+  </section>
+  <InyectarCatalogo slot="scripts" productos={productos} />
+</Layout>

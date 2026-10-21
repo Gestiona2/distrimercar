@@ -1,0 +1,22 @@
+---
+import categorias from '../datos/categorias.json';
+
+interface Props {
+  titulo: string;
+  bajada?: string;
+  activa?: string;
+}
+
+const { titulo, bajada, activa } = Astro.props;
+const cat = categorias.find((c) => c.slug === activa);
+---
+
+<section class="bg-gradient-to-br from-verde to-verde-oscuro py-10 text-white">
+  <div class="contenedor">
+    <p class="text-xs font-black uppercase tracking-[0.2em] text-amarillo">Catálogo</p>
+    <h1 class="mt-1 text-3xl font-black sm:text-4xl">{titulo}</h1>
+    <p class="mt-2 max-w-2xl text-sm text-white/85 sm:text-base">
+      {bajada || cat?.descripcion || 'Pide por WhatsApp: arma tu carrito y envíanos el pedido completo.'}
+    </p>
+  </div>
+</section>

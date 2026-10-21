@@ -1,0 +1,41 @@
+---
+import { pesos } from '../scripts/formato.js';
+
+interface Props {
+  producto: any;
+}
+
+const { producto: p } = Astro.props;
+const descuento =
+  p.precio_antes && p.precio_antes > p.precio
+    ? Math.round((1 - p.precio / p.precio_antes) * 100)
+    : null;
+---
+
+<article class="group relative flex flex-col overflow-hidden rounded-3xl border border-verde/10 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-verde/10">
+  <a href={`/producto/${p.slug}`} class="relative block aspect-square overflow-hidden bg-white p-3">
+    <img
+      src={`/img/productos/${p.imagenes[0]}`}
+      alt={p.titulo}
+      loading="lazy"
+      class="h-full w-full object-contain transition duration-300 group-hover:scale-105"
+    />
+    {descuento && (
+      <span class="absolute left-3 top-3 rounded-full bg-naranja px-2.5 py-1 text-[0.7rem] font-black text-white shadow-sm">-{descuento}%</span>
+    )}
+  </a>
+  <div class="flex flex-1 flex-col gap-1 p-4 pt-1">
+    <p class="text-[0.68rem] font-black uppercase tracking-wider text-naranja">{p.marca}</p>
+    <a href={`/producto/${p.slug}`} class="clamp-2 text-sm font-bold leading-snug hover:text-verde">{p.titulo}</a>
+    {p.precio_antes && p.precio_antes > p.precio && (
+      <p class="text-xs text-tinta-suave line-through">{pesos(p.precio_antes)}</p>
+    )}
+    <p class="mt-0.5 text-lg font-black text-verde">{pesos(p.precio)}</p>
+    <button
+      data-agregar={p.slug}
+      class="mt-auto w-full rounded-2xl bg-verde-claro py-2.5 text-sm font-extrabold text-verde transition hover:bg-verde hover:text-white"
+    >
+      Agregar
+    </button>
+  </div>
+</article>

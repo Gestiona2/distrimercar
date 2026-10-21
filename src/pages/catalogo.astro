@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GrillaProductos from '../components/GrillaProductos.astro';
+import RailCategorias from '../components/RailCategorias.astro';
+import EncabezadoSeccion from '../components/EncabezadoSeccion.astro';
+import InyectarCatalogo from '../components/InyectarCatalogo.astro';
+import GrillaMarcas from '../components/GrillaMarcas.astro';
+import productos from '../datos/productos.json';
+
+const disponibles = productos.filter((p) => p.stock);
+---
+
+<Layout titulo="Catálogo completo" descripcion={`Todos los productos de Distrimercar: ${disponibles.length} ítems de abarrotes, aseo, desayunos y más.`}>
+  <EncabezadoSeccion titulo="Catálogo completo" bajada={`${disponibles.length} productos disponibles. Arma tu carrito y pídelo todo por WhatsApp.`} />
+  <RailCategorias />
+  <section class="contenedor py-10">
+    <GrillaProductos productos={disponibles} columnas={4} />
+  </section>
+  <section id="marcas" class="contenedor pb-12">
+    <h2 class="mb-6 text-center text-2xl font-black">Marcas del catálogo</h2>
+    <GrillaMarcas />
+  </section>
+  <InyectarCatalogo slot="scripts" productos={productos} />
+</Layout>

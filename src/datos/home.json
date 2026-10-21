@@ -1,0 +1,17 @@
+{
+  "bienvenida": {
+    "titulo": "Todo lo que tu negocio necesita, en un solo lugar",
+    "subtitulo": "Distribuidora de abarrotes, aseo y consumo masivo. Arma tu pedido por WhatsApp y nosotros lo preparamos.",
+    "cta_catalogo": "Ver catálogo",
+    "cta_whatsapp": "Pedir por WhatsApp"
+  },
+  "franjas": [
+    { "icono": "message", "titulo": "Pedido por WhatsApp", "texto": "Arma tu carrito y envíanos el pedido completo en un mensaje." },
+    { "icono": "truck", "titulo": "Domicilio o recoge", "texto": "Pide domicilio en tu zona o recoge en el local." },
+    { "icono": "store", "titulo": "Marcas que ya conoces", "texto": "Quala, Nestlé, Colgate, Nutresa, Incauca y más." }
+  ],
+  "seccion_destacados": "Lo más pedido",
+  "seccion_ofertas": "Ofertas de la semana",
+  "seccion_marcas": "Trabajamos con las mejores marcas",
+  "nota_demo": "Sitio demo: los precios y las descripciones son de ejemplo y serán reemplazados con los datos reales del negocio."
+}
