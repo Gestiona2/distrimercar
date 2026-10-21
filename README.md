@@ -30,6 +30,7 @@ npm run preview  # sirve dist/
 | Precios, descripciones, stock, destacados | `src/datos/productos.json` |
 | Categorías del menú | `src/datos/categorias.json` |
 | WhatsApp, dirección, textos del encabezado | `src/datos/config.json` |
+| Formas de pago (y el selector del carrito) | `src/datos/config.json → formas_pago` |
 | Textos de la portada | `src/datos/home.json` |
 | Sinónimos del buscador | `src/datos/sinonimos.json` |
 | Fotos de producto | `public/img/productos/` (mismo nombre que el slug) |

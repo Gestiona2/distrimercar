@@ -73,6 +73,7 @@ export function mensajeWhatsApp(carrito, config, datosEntrega = {}) {
   ];
   if (datosEntrega.nombre) partes.push('', `Nombre: ${datosEntrega.nombre}`);
   if (datosEntrega.direccion) partes.push(`Dirección: ${datosEntrega.direccion}`);
+  if (datosEntrega.pago) partes.push(`Forma de pago: ${datosEntrega.pago}`);
   if (datosEntrega.nota) partes.push(`Nota: ${datosEntrega.nota}`);
   partes.push('', '(Los precios son de demostración)');
   return partes.join('\n');

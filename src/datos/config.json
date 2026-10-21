@@ -8,6 +8,12 @@
   "horario": null,
   "email": null,
   "redes": [],
+  "formas_pago": [
+    { "id": "efectivo", "nombre": "Efectivo" },
+    { "id": "datáfono", "nombre": "Tarjeta débito y crédito", "nota": "Datáfono en el local" },
+    { "id": "transferencia", "nombre": "Transferencia bancaria" },
+    { "id": "billetera", "nombre": "Nequi o Daviplata" }
+  ],
   "envio": {
     "disponible": true,
     "costo": null,

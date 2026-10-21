@@ -12,6 +12,9 @@ hasta cerrar los bloqueantes de abajo.
 - [ ] **Ciudad / barrio del local.** `src/datos/config.json` tiene `"ciudad": null` — no se
   inventó. Completar con el cliente (aparece en el encabezado y el pie).
 - [ ] **Horario de atención.** `config.json → "horario": null`. Falta confirmarlo.
+- [ ] **Formas de pago.** `config.json → "formas_pago"` trae ejemplos de demo (efectivo,
+  datáfono, transferencia, Nequi/Daviplata). Confirmar cuáles acepta de verdad el negocio y
+  si el datáfono está solo en el local o también en el domicilio.
 - [ ] **Correo y redes.** `config.json → "email"` y `"redes"` están vacíos. Si no tiene, se
   quedan vacíos; nunca inventar.
 - [ ] **Foto del logo definitivo.** El logo actual viene de la imagen IA del cliente, recortada

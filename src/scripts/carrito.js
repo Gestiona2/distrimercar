@@ -91,6 +91,8 @@ export function montarCarrito(config) {
       direccion: document.getElementById('entrega-direccion')?.value?.trim() || '',
       nota: document.getElementById('entrega-nota')?.value?.trim() || '',
     };
+    const pagoSel = document.getElementById('entrega-pago');
+    if (pagoSel && pagoSel.value) datos.pago = pagoSel.options[pagoSel.selectedIndex].text;
     const msg = mensajeWhatsApp(carrito, config, datos);
     window.open(enlaceWhatsApp(config.whatsapp, msg), '_blank', 'noopener');
   });
