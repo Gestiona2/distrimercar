@@ -24,6 +24,8 @@ export function montarCarrito(config) {
 
   if (!raiz || !lista) return;
 
+  const B = window.__DM_BASE__ || '';
+
   function abrir() {
     raiz.classList.remove('pointer-events-none', 'opacity-0');
     document.body.style.overflow = 'hidden';
@@ -57,7 +59,7 @@ export function montarCarrito(config) {
         (l) => `
       <li class="flex gap-3 border-b border-verde-claro py-3" data-slug="${l.slug}">
         <div class="h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-white">
-          <img src="/img/productos/${l.imagen}" alt="" class="h-full w-full object-contain" loading="lazy" />
+          <img src="${B}/img/productos/${l.imagen}" alt="" class="h-full w-full object-contain" loading="lazy" />
         </div>
         <div class="min-w-0 flex-1">
           <p class="clamp-2 text-sm font-bold leading-tight">${l.titulo}</p>

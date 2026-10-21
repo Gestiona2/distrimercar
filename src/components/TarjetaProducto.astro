@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { producto: p } = Astro.props;
+const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 const descuento =
   p.precio_antes && p.precio_antes > p.precio
     ? Math.round((1 - p.precio / p.precio_antes) * 100)
@@ -13,9 +14,9 @@ const descuento =
 ---
 
 <article class="group relative flex flex-col overflow-hidden rounded-3xl border border-verde/10 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-verde/10">
-  <a href={`/producto/${p.slug}`} class="relative block aspect-square overflow-hidden bg-white p-3">
+  <a href={`${B}/producto/${p.slug}`} class="relative block aspect-square overflow-hidden bg-white p-3">
     <img
-      src={`/img/productos/${p.imagenes[0]}`}
+      src={`${B}/img/productos/${p.imagenes[0]}`}
       alt={p.titulo}
       loading="lazy"
       class="h-full w-full object-contain transition duration-300 group-hover:scale-105"
@@ -26,7 +27,7 @@ const descuento =
   </a>
   <div class="flex flex-1 flex-col gap-1 p-4 pt-1">
     <p class="text-[0.68rem] font-black uppercase tracking-wider text-naranja">{p.marca}</p>
-    <a href={`/producto/${p.slug}`} class="clamp-2 text-sm font-bold leading-snug hover:text-verde">{p.titulo}</a>
+    <a href={`${B}/producto/${p.slug}`} class="clamp-2 text-sm font-bold leading-snug hover:text-verde">{p.titulo}</a>
     {p.precio_antes && p.precio_antes > p.precio && (
       <p class="text-xs text-tinta-suave line-through">{pesos(p.precio_antes)}</p>
     )}

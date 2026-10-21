@@ -11,6 +11,7 @@ const { titulo, descripcion } = Astro.props;
 const tituloCompleto = titulo ? `${titulo} | ${config.nombre}` : `${config.nombre} — Abarrotes, aseo y consumo masivo`;
 const desc = descripcion || config.descripcion_corta;
 const ruta = Astro.url.pathname;
+const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 const enCatalogo = ruta.startsWith('/catalogo') || ruta.startsWith('/categoria') || ruta.startsWith('/producto') || ruta.startsWith('/ofertas');
 ---
 
@@ -21,7 +22,7 @@ const enCatalogo = ruta.startsWith('/catalogo') || ruta.startsWith('/categoria')
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{tituloCompleto}</title>
     <meta name="description" content={desc} />
-    <link rel="icon" type="image/webp" href="/img/sitio/logo.webp" />
+    <link rel="icon" type="image/webp" href={`${B}/img/sitio/logo.webp`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet" />
@@ -39,13 +40,13 @@ const enCatalogo = ruta.startsWith('/catalogo') || ruta.startsWith('/categoria')
 
     <header class="sticky top-0 z-40 border-b border-verde/10 bg-crema/95 backdrop-blur">
       <div class="contenedor flex items-center gap-3 py-3">
-        <a href="/" class="shrink-0" aria-label={config.nombre}>
-          <img src="/img/sitio/logo.webp" alt={config.nombre} width="150" height="80" class="h-12 w-auto sm:h-14" />
+        <a href={`${B}/`} class="shrink-0" aria-label={config.nombre}>
+          <img src={`${B}/img/sitio/logo.webp`} alt={config.nombre} width="150" height="80" class="h-12 w-auto sm:h-14" />
         </a>
 
         <nav class="ml-2 hidden items-center gap-1 md:flex" aria-label="Principal">
-          <a href="/catalogo" class:list={["rounded-xl px-3 py-2 text-sm font-bold hover:bg-verde-claro", enCatalogo && "text-verde"]}>Catálogo</a>
-          <a href="/ofertas" class:list={["rounded-xl px-3 py-2 text-sm font-bold hover:bg-verde-claro", ruta.startsWith('/ofertas') && "text-verde"]}>Ofertas</a>
+          <a href={`${B}/catalogo`} class:list={["rounded-xl px-3 py-2 text-sm font-bold hover:bg-verde-claro", enCatalogo && "text-verde"]}>Catálogo</a>
+          <a href={`${B}/ofertas`} class:list={["rounded-xl px-3 py-2 text-sm font-bold hover:bg-verde-claro", ruta.startsWith('/ofertas') && "text-verde"]}>Ofertas</a>
         </nav>
 
         <div class="relative ml-auto w-full max-w-xs" id="buscador">
@@ -88,15 +89,15 @@ const enCatalogo = ruta.startsWith('/catalogo') || ruta.startsWith('/categoria')
       </div>
       <div class="contenedor grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <img src="/img/sitio/logo.webp" alt={config.nombre} class="h-16 w-auto rounded-xl bg-white p-2" />
+          <img src={`${B}/img/sitio/logo.webp`} alt={config.nombre} class="h-16 w-auto rounded-xl bg-white p-2" />
           <p class="mt-4 text-sm leading-relaxed text-white/80">{config.descripcion_corta}</p>
         </div>
         <div>
           <h3 class="text-sm font-black uppercase tracking-wider text-amarillo">Catálogo</h3>
           <ul class="mt-3 space-y-2 text-sm text-white/85">
-            <li><a class="hover:text-amarillo" href="/catalogo">Todos los productos</a></li>
-            <li><a class="hover:text-amarillo" href="/ofertas">Ofertas</a></li>
-            <li><a class="hover:text-amarillo" href="/catalogo#marcas">Marcas</a></li>
+            <li><a class="hover:text-amarillo" href={`${B}/catalogo`}>Todos los productos</a></li>
+            <li><a class="hover:text-amarillo" href={`${B}/ofertas`}>Ofertas</a></li>
+            <li><a class="hover:text-amarillo" href={`${B}/catalogo#marcas`}>Marcas</a></li>
           </ul>
         </div>
         <div>
@@ -109,7 +110,7 @@ const enCatalogo = ruta.startsWith('/catalogo') || ruta.startsWith('/categoria')
         </div>
         <div>
           <h3 class="text-sm font-black uppercase tracking-wider text-amarillo">Foto del local</h3>
-          <img src="/img/sitio/foto-local.webp" alt={`Local de ${config.nombre}`} loading="lazy" class="mt-3 rounded-2xl" />
+          <img src={`${B}/img/sitio/foto-local.webp`} alt={`Local de ${config.nombre}`} loading="lazy" class="mt-3 rounded-2xl" />
         </div>
       </div>
       <div class="border-t border-white/15">
@@ -157,8 +158,9 @@ const enCatalogo = ruta.startsWith('/catalogo') || ruta.startsWith('/categoria')
       </aside>
     </div>
 
-    <script is:inline define:vars={{ configData: config }}>
+    <script is:inline define:vars={{ configData: config, base: B }}>
       window.__DM_CONFIG__ = configData;
+      window.__DM_BASE__ = base;
     </script>
     <script is:inline>
       // catálogo se inyecta desde cada página cuando hace falta

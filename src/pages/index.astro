@@ -8,6 +8,7 @@ import productos from '../datos/productos.json';
 import home from '../datos/home.json';
 import config from '../datos/config.json';
 
+const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 const destacados = productos.filter((p) => p.destacado && p.stock).slice(0, 10);
 const ofertas = productos.filter((p) => p.precio_antes && p.precio_antes > p.precio && p.stock).slice(0, 4);
 ---
@@ -26,7 +27,7 @@ const ofertas = productos.filter((p) => p.precio_antes && p.precio_antes > p.pre
           {home.bienvenida.subtitulo}
         </p>
         <div class="mt-7 flex flex-wrap gap-3">
-          <a href="/catalogo" class="rounded-2xl bg-white px-6 py-3.5 text-sm font-black uppercase tracking-wide text-verde shadow-lg transition hover:bg-amarillo hover:text-tinta">
+          <a href={`${B}/catalogo`} class="rounded-2xl bg-white px-6 py-3.5 text-sm font-black uppercase tracking-wide text-verde shadow-lg transition hover:bg-amarillo hover:text-tinta">
             {home.bienvenida.cta_catalogo}
           </a>
           <a href={`https://wa.me/${config.whatsapp}`} target="_blank" rel="noopener" class="rounded-2xl border-2 border-white/70 px-6 py-3.5 text-sm font-black uppercase tracking-wide text-white transition hover:bg-white/10">
@@ -36,7 +37,7 @@ const ofertas = productos.filter((p) => p.precio_antes && p.precio_antes > p.pre
       </div>
       <div class="relative mx-auto w-full max-w-md">
         <div class="rotate-2 rounded-3xl bg-amarillo/90 p-3 shadow-2xl">
-          <img src="/img/sitio/foto-local.webp" alt={`Local de ${config.nombre}`} class="rounded-2xl" width="809" height="613" />
+          <img src={`${B}/img/sitio/foto-local.webp`} alt={`Local de ${config.nombre}`} class="rounded-2xl" width="809" height="613" />
         </div>
         <div class="absolute -bottom-5 -left-4 rotate-[-4deg] rounded-2xl bg-white px-4 py-3 shadow-xl">
           <p class="text-xs font-black uppercase tracking-wide text-naranja">Pide hoy</p>
@@ -69,7 +70,7 @@ const ofertas = productos.filter((p) => p.precio_antes && p.precio_antes > p.pre
   <section class="contenedor py-12">
     <div class="mb-6 flex items-end justify-between gap-4">
       <h2 class="text-2xl font-black sm:text-3xl">{home.seccion_destacados}</h2>
-      <a href="/catalogo" class="text-sm font-extrabold text-naranja hover:underline">Ver todo →</a>
+      <a href={`${B}/catalogo`} class="text-sm font-extrabold text-naranja hover:underline">Ver todo →</a>
     </div>
     <GrillaProductos productos={destacados} columnas={5} />
   </section>
@@ -81,7 +82,7 @@ const ofertas = productos.filter((p) => p.precio_antes && p.precio_antes > p.pre
           <h2 class="text-2xl font-black sm:text-3xl">
             <span class="text-naranja">%</span> {home.seccion_ofertas}
           </h2>
-          <a href="/ofertas" class="text-sm font-extrabold text-naranja hover:underline">Ver ofertas →</a>
+          <a href={`${B}/ofertas`} class="text-sm font-extrabold text-naranja hover:underline">Ver ofertas →</a>
         </div>
         <GrillaProductos productos={ofertas} columnas={4} />
       </div>

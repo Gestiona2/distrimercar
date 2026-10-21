@@ -6,12 +6,13 @@ interface Props {
 }
 
 const { activa } = Astro.props;
+const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <nav aria-label="Categorías" class="border-b border-verde/10 bg-white">
   <div class="contenedor flex gap-2 overflow-x-auto py-3">
     <a
-      href="/catalogo"
+      href={`${B}/catalogo`}
       class:list={[
         'shrink-0 rounded-full px-4 py-2 text-sm font-bold transition',
         !activa ? 'bg-verde text-white' : 'bg-verde-claro text-verde hover:bg-verde/20',
@@ -21,7 +22,7 @@ const { activa } = Astro.props;
     </a>
     {categorias.map((c) => (
       <a
-        href={`/categoria/${c.slug}`}
+        href={`${B}/categoria/${c.slug}`}
         class:list={[
           'shrink-0 rounded-full px-4 py-2 text-sm font-bold transition',
           activa === c.slug ? 'bg-verde text-white' : 'bg-verde-claro text-verde hover:bg-verde/20',

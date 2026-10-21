@@ -8,6 +8,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const productos = window.__DM_PRODUCTOS__ || [];
   const sinonimos = window.__DM_SINONIMOS__ || {};
 
+  const B = window.__DM_BASE__ || '';
+
   montarCarrito(config);
 
   const indice = construirIndice(productos);
@@ -33,8 +35,8 @@ window.addEventListener('DOMContentLoaded', () => {
       .map((slug) => {
         const p = porSlug.get(slug);
         if (!p) return '';
-        return `<a href="/producto/${p.slug}" class="flex items-center gap-3 px-4 py-2.5 hover:bg-verde-claro">
-          <img src="/img/productos/${p.imagen}" alt="" class="h-10 w-10 rounded-lg bg-white object-contain" loading="lazy" />
+        return `<a href="${B}/producto/${p.slug}" class="flex items-center gap-3 px-4 py-2.5 hover:bg-verde-claro">
+          <img src="${B}/img/productos/${p.imagen}" alt="" class="h-10 w-10 rounded-lg bg-white object-contain" loading="lazy" />
           <span class="min-w-0 flex-1">
             <span class="block clamp-2 text-sm font-bold leading-tight">${p.titulo}</span>
             <span class="block text-xs text-tinta-suave">${p.marca}</span>
