@@ -1,7 +1,14 @@
 # PENDIENTES — Distrimercar O.R
 
-Sitio demo de catálogo construido en `web-distrimercar/`. **No está listo para publicar**
-hasta cerrar los bloqueantes de abajo.
+Sitio demo de catálogo construido en `web-distrimercar/`.
+
+**Publicado como demo:** https://demos.emp2web.com/distrimercar/ — repo
+`Gestiona2/distrimercar` (GitHub Pages, se redespliega solo con cada push a `main`;
+el workflow está en `.github/workflows/deploy.yml`). El sitio vive con `base:
+"/distrimercar"` en `astro.config.mjs`; al pasar a dominio propio, cambiar `site` y
+poner `base: "/"`.
+
+**No está listo para publicar en dominio real** hasta cerrar los bloqueantes de abajo.
 
 ## Bloqueantes de publicación
 

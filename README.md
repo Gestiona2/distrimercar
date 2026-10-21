@@ -1,5 +1,8 @@
 # Distrimercar O.R — tienda online (demo)
 
+**Demo publicada:** https://demos.emp2web.com/distrimercar/ · repo
+[Gestiona2/distrimercar](https://github.com/Gestiona2/distrimercar)
+
 Catálogo con pedido por WhatsApp para **Distrimercar O.R**, distribuidora de abarrotes y
 aseo. Construido con Astro + Tailwind (patrón de catálogo del sistema constructor).
 
